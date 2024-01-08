@@ -1,3 +1,5 @@
 import "./style.css";
+import ops from "./modules/ops";
+import dom from "./modules/dom";
 
-console.log("asd");
+dom().updateWeather("tokyo");

@@ -116,7 +116,27 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\r\n\r\nconsole.log(\"asd\");\r\n\n\n//# sourceURL=webpack://odin-weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_ops__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ops */ \"./src/modules/ops.js\");\n/* harmony import */ var _modules_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/dom */ \"./src/modules/dom.js\");\n\r\n\r\n\r\n\r\n(0,_modules_dom__WEBPACK_IMPORTED_MODULE_2__[\"default\"])().updateWeather(\"tokyo\");\r\n\n\n//# sourceURL=webpack://odin-weather-app/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/dom.js":
+/*!****************************!*\
+  !*** ./src/modules/dom.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ dom)\n/* harmony export */ });\n/* harmony import */ var _ops__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ops */ \"./src/modules/ops.js\");\n\r\n\r\nfunction dom() {\r\n  const updateWeather = async (location) => {\r\n    try {\r\n      const weather = await (0,_ops__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().getWeather(location);\r\n    } catch (err) {\r\n      console.log(\"asdf\");\r\n    }\r\n  };\r\n\r\n  return { updateWeather };\r\n}\r\n\n\n//# sourceURL=webpack://odin-weather-app/./src/modules/dom.js?");
+
+/***/ }),
+
+/***/ "./src/modules/ops.js":
+/*!****************************!*\
+  !*** ./src/modules/ops.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ ops)\n/* harmony export */ });\nfunction ops() {\r\n  const apiKey = \"02f4480fe9244812998133825240401\";\r\n\r\n  const getWeather = async (location) => {\r\n    const response = await fetch(\r\n      `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}`\r\n    );\r\n    if (response.status != 200) throw new Error(\"null\");\r\n    return response.json();\r\n  };\r\n\r\n  return { getWeather };\r\n}\r\n\n\n//# sourceURL=webpack://odin-weather-app/./src/modules/ops.js?");
 
 /***/ })
 
