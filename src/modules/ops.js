@@ -3,7 +3,7 @@ export default function ops() {
 
   const getWeather = async (location) => {
     const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}`
+      `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=4`
     );
     if (response.status != 200) throw new Error("null");
     return response.json();
