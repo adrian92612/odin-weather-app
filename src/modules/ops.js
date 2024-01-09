@@ -10,8 +10,7 @@ export default function ops() {
       );
       if (response.status != 200) throw new Error("null");
       const data = await response.json();
-      dom().updateCurrent(data.current);
-      dom().updateForecast(data.forecast);
+      dom().updateWeatherData(data);
     } catch (err) {
       alert(err);
     }

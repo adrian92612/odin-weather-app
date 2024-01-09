@@ -1,16 +1,28 @@
 import ops from "./ops";
 
 export default function dom() {
-  // let weather;
+  let weather;
+  let isCelsius = true;
+  const weatherIcon = document.querySelector(".weather-icon");
+  const location = document.querySelector(".location");
+  const temperature = document.querySelector(".temperature");
 
-  const updateCurrent = (data) => {
-    const weather = data;
+  const updateWeatherData = (data) => {
+    weather = data;
     console.log(weather);
-  };
-  const updateForecast = (data) => {
-    const weather = data;
-    console.log(weather);
+    updateCurrent();
   };
 
-  return { updateCurrent, updateForecast };
+  const updateCurrent = () => {
+    weatherIcon.src = weather.current.condition.icon;
+    location.innerText = `${weather.location.name}, ${weather.location.region}, ${weather.location.country}`;
+    const deg = isCelsius ? weather.current.temp_c : weather.current.temp_f;
+    temperature.innerText = `${deg}°`;
+  };
+
+  const updateForecast = () => {
+    const weather = data;
+  };
+
+  return { updateWeatherData };
 }

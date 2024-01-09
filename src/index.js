@@ -6,6 +6,7 @@ const submitLocation = (e) => {
   e.preventDefault();
   const loc = document.querySelector("#search");
   ops().getWeather(loc.value);
+  e.target.reset();
 };
 
 const form = document.querySelector(".form");
