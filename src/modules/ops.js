@@ -5,7 +5,7 @@ export default function ops() {
   const getWeather = async (location) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=4`
+        `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${location}&days=3`
       );
       if (response.status != 200) throw new Error("null");
       const data = await response.json();
@@ -35,11 +35,11 @@ export default function ops() {
       e.preventDefault();
       const loc = document.querySelector("#search");
       getWeather(loc.value);
-      e.target.reset();
+      form.reset();
     });
 
     const tempScaleBtn = document.querySelector("#temp-scale");
-    tempScaleBtn.addEventListener("click", dom().changeTempScale);
+    tempScaleBtn.addEventListener("click", dom().changeTempUnit);
   };
 
   return { getWeather, getNameOfDay, registerEvents };

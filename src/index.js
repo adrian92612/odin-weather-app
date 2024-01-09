@@ -1,20 +1,8 @@
 import "./style.css";
 import ops from "./modules/ops";
 
-// const form = document.querySelector(".form");
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const loc = document.querySelector("#search");
-//   ops().getWeather(loc.value);
-//   e.target.reset();
-// });
+const defaultLocation = "Manila";
 
 ops().registerEvents();
-
-const tempScaleBtn = document.querySelector("#temp-scale");
-
-// fetch(
-//   "https://api.openweathermap.org/data/2.5/weather?q=manila&appid=1c81eff6a61dd60b64f545a65fa75f29"
-// )
-//   .then((data) => data.json())
-//   .then((data) => console.log(data));
+document.querySelector("#search").value = defaultLocation;
+document.querySelector("#btn-form").click();

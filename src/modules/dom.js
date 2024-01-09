@@ -10,58 +10,47 @@ export default function dom() {
     updateForecast();
   };
 
-  const tempScaleBtn = document.querySelector("#temp-scale");
-
-  const changeTempScale = () => {
+  const changeTempUnit = () => {
     isCelsius = !isCelsius;
-    console.log(weather);
-    tempScaleBtn.innerText = isCelsius ? `Celsius` : `Fahrenheit`;
+    document.querySelector("#temp-scale").innerText = isCelsius
+      ? `Celsius`
+      : `Fahrenheit`;
     updateCurrent();
     updateForecast();
   };
 
-  const weatherIcon = document.querySelector(".weather-icon");
-  const location = document.querySelector(".location");
-  const temperature = document.querySelector(".temperature");
-
   const updateCurrent = () => {
-    weatherIcon.src = weather.current.condition.icon;
-    location.innerText = `${weather.location.name}, ${weather.location.region}, ${weather.location.country}`;
-    const deg = isCelsius ? weather.current.temp_c : weather.current.temp_f;
-    temperature.innerText = `${deg}°`;
+    const currentWeatherArray = [
+      ...document.querySelector(".current-weather").children,
+    ];
+    // Weather Icon
+    currentWeatherArray[0].src = weather.current.condition.icon;
+    // Weather Description
+    currentWeatherArray[1].innerText = weather.current.condition.text;
+    // Location
+    currentWeatherArray[2].innerText = `${weather.location.name}, ${weather.location.region}, ${weather.location.country}`;
+    // Temperature
+    currentWeatherArray[3].innerText = isCelsius
+      ? `${weather.current.temp_c}°C`
+      : `${weather.current.temp_f}°F`;
   };
-
-  const fcDay1 = document.querySelector("#fc-day1");
-  const fcTemp1 = document.querySelector("#fc-temp1");
-  const fcIcon1 = document.querySelector("#fc-icon1");
-  const fcDay2 = document.querySelector("#fc-day2");
-  const fcTemp2 = document.querySelector("#fc-temp2");
-  const fcIcon2 = document.querySelector("#fc-icon2");
-  const fcDay3 = document.querySelector("#fc-day3");
-  const fcTemp3 = document.querySelector("#fc-temp3");
-  const fcIcon3 = document.querySelector("#fc-icon3");
-  const fcDayArray = [fcDay1, fcDay2, fcDay3];
-  const fcTempArray = [fcTemp1, fcTemp2, fcTemp3];
-  const fcIconArray = [fcIcon1, fcIcon2, fcIcon3];
 
   const updateForecast = () => {
     const fcData = weather.forecast.forecastday;
+    const fcDivs = [...document.querySelectorAll(".forecast-cont")];
 
-    fcDayArray.forEach(
-      (day, i) => (day.innerText = ops().getNameOfDay(fcData[i + 1].date))
-    );
-
-    fcTempArray.forEach((temp, i) => {
-      const deg = isCelsius
-        ? fcData[i + 1].day.avgtemp_c
-        : fcData[i + 1].day.avgtemp_f;
-      temp.innerText = `${deg}°`;
-    });
-
-    fcIconArray.forEach((icon, i) => {
-      icon.src = fcData[i + 1].day.condition.icon;
+    fcDivs.forEach((div, i) => {
+      const fcDivChild = [...div.children];
+      // Name of Day
+      fcDivChild[0].innerText = ops().getNameOfDay(fcData[i].date);
+      // Average Temperature
+      fcDivChild[1].innerText = isCelsius
+        ? `${fcData[i].day.avgtemp_c}°C`
+        : `${fcData[i].day.avgtemp_f}°F`;
+      // Weather Icon
+      fcDivChild[2].src = fcData[i].day.condition.icon;
     });
   };
 
-  return { updateWeatherData, changeTempScale };
+  return { updateWeatherData, changeTempUnit };
 }
