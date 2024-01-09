@@ -1,12 +1,21 @@
 import ops from "./ops";
 
-export default function dom() {
-  let weather;
-  let isCelsius = true;
+let weather;
+let isCelsius = true;
 
+export default function dom() {
   const updateWeatherData = (data) => {
     weather = data;
+    updateCurrent();
+    updateForecast();
+  };
+
+  const tempScaleBtn = document.querySelector("#temp-scale");
+
+  const changeTempScale = () => {
+    isCelsius = !isCelsius;
     console.log(weather);
+    tempScaleBtn.innerText = isCelsius ? `Celsius` : `Fahrenheit`;
     updateCurrent();
     updateForecast();
   };
@@ -14,6 +23,7 @@ export default function dom() {
   const weatherIcon = document.querySelector(".weather-icon");
   const location = document.querySelector(".location");
   const temperature = document.querySelector(".temperature");
+
   const updateCurrent = () => {
     weatherIcon.src = weather.current.condition.icon;
     location.innerText = `${weather.location.name}, ${weather.location.region}, ${weather.location.country}`;
@@ -53,5 +63,5 @@ export default function dom() {
     });
   };
 
-  return { updateWeatherData };
+  return { updateWeatherData, changeTempScale };
 }

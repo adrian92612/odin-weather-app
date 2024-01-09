@@ -2,7 +2,6 @@ import dom from "./dom";
 
 export default function ops() {
   const apiKey = "02f4480fe9244812998133825240401";
-  const apiKey2 = "1c81eff6a61dd60b64f545a65fa75f29";
   const getWeather = async (location) => {
     try {
       const response = await fetch(
@@ -30,5 +29,18 @@ export default function ops() {
     return dayNames[day.getDay()];
   };
 
-  return { getWeather, getNameOfDay };
+  const registerEvents = () => {
+    const form = document.querySelector(".form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const loc = document.querySelector("#search");
+      getWeather(loc.value);
+      e.target.reset();
+    });
+
+    const tempScaleBtn = document.querySelector("#temp-scale");
+    tempScaleBtn.addEventListener("click", dom().changeTempScale);
+  };
+
+  return { getWeather, getNameOfDay, registerEvents };
 }
