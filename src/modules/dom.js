@@ -1,15 +1,16 @@
 import ops from "./ops";
 
 export default function dom() {
-  let weather;
-  const updateWeather = async (location) => {
-    try {
-      weather = await ops().getWeather(location);
-      console.log(weather);
-    } catch (err) {
-      console.log(err);
-    }
+  // let weather;
+
+  const updateCurrent = (data) => {
+    const weather = data;
+    console.log(weather);
+  };
+  const updateForecast = (data) => {
+    const weather = data;
+    console.log(weather);
   };
 
-  return { updateWeather };
+  return { updateCurrent, updateForecast };
 }

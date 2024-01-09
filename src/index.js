@@ -5,7 +5,7 @@ import dom from "./modules/dom";
 const submitLocation = (e) => {
   e.preventDefault();
   const loc = document.querySelector("#search");
-  dom().updateWeather(loc.value);
+  ops().getWeather(loc.value);
 };
 
 const form = document.querySelector(".form");
