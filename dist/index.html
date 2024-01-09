@@ -7,6 +7,7 @@
   <script defer src="bundle.js"></script></head>
   <body>
     <div class="container">
+      <!-- Search Form -->
       <form action="#" class="form">
         <input
           type="search"
@@ -16,10 +17,29 @@
         />
         <button type="submit" id="btn-form">Search</button>
       </form>
+      <!-- Current Weather -->
       <div class="current-weather">
         <img class="weather-icon" />
         <p class="location"></p>
         <p class="temperature"></p>
+      </div>
+      <!-- Forecast -->
+      <div class="forecast">
+        <div class="forecast-cont">
+          <p id="fc-day1"></p>
+          <p id="fc-temp1"></p>
+          <img id="fc-icon1" />
+        </div>
+        <div class="forecast-cont">
+          <p id="fc-day2"></p>
+          <p id="fc-temp2"></p>
+          <img id="fc-icon2" />
+        </div>
+        <div class="forecast-cont">
+          <p id="fc-day3"></p>
+          <p id="fc-temp3"></p>
+          <img id="fc-icon3" />
+        </div>
       </div>
     </div>
   </body>
