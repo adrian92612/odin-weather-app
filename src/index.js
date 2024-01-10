@@ -1,8 +1,8 @@
 import "./style.css";
-import ops from "./modules/ops";
+import * as ops from "./modules/ops";
 
 const defaultLocation = "Manila";
 
-ops().registerEvents();
+ops.registerEvents();
 document.querySelector("#search").value = defaultLocation;
 document.querySelector("#btn-form").click();
